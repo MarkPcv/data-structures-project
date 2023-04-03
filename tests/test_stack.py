@@ -1,1 +1,42 @@
 """Здесь надо написать тесты с использованием unittest для модуля stack."""
+import unittest
+from src.stack import Node, Stack
+
+
+class TestNode(unittest.TestCase):
+    """Test class for Node Objects"""
+
+    def test_node_init(self):
+        """
+        Tests initialization of Node class
+        """
+        node1 = Node('New York', None)
+        node2 = Node(555, node1)
+        self.assertEqual(node1.data, 'New York')
+        self.assertEqual(node2.data, 555)
+        self.assertTrue(isinstance(node1,Node))
+        self.assertIs(node1, node2.next_node)
+
+
+class TestStack(unittest.TestCase):
+    """Test class for Stack Objects"""
+
+    def test_stack_init(self):
+        """
+        Tests initialization of Stack class
+        """
+        stack = Stack()
+        self.assertIsNone(stack.top)
+
+    def test_stack_push(self):
+        """
+        Tests push function of Stack class
+        """
+        stack = Stack()
+        stack.push('I')
+        stack.push('am')
+        stack.push('here')
+        self.assertEqual(stack.top.data, 'here')
+        self.assertEqual(stack.top.next_node.data, 'am')
+        self.assertEqual(stack.top.next_node.next_node.data, 'I')
+        self.assertIsNone(stack.top.next_node.next_node.next_node)
