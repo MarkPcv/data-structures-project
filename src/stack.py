@@ -36,4 +36,8 @@ class Stack:
 
         :return: данные удаленного элемента
         """
-        pass
+        # Retrieve data from last element of stack
+        data = self.top.data
+        # Change top reference to next element
+        self.top = self.top.next_node
+        return data
