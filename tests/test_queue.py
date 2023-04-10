@@ -19,7 +19,7 @@ class TestNode(unittest.TestCase):
 class TestQueue(unittest.TestCase):
     """Test class for Queue Objects"""
 
-    def test_stack_init(self):
+    def test_queue_init(self):
         """
         Tests initialization of Queue class
         """
@@ -27,7 +27,7 @@ class TestQueue(unittest.TestCase):
         self.assertIsNone(queue.head)
         self.assertIsNone(queue.tail)
 
-    def test_stack_str(self):
+    def test_queue_str(self):
         """
         Tests __str__ dunder methods
         """
@@ -37,3 +37,19 @@ class TestQueue(unittest.TestCase):
         queue.enqueue('Third node')
         expected_result = 'First node\nSecond node\nThird node'
         self.assertEqual(str(queue),expected_result)
+
+    def test_queue_enqueue(self):
+        """
+        Tests enqueue method of Queue class
+        """
+        queue = Queue()
+        queue.enqueue('head')
+        queue.enqueue('middle1')
+        queue.enqueue('middle2')
+        queue.enqueue('middle3')
+        queue.enqueue('tail')
+        self.assertEqual(queue.head.data, 'head')
+        self.assertEqual(queue.head.next_node.data, 'middle1')
+        self.assertEqual(queue.head.next_node.next_node.data, 'middle2')
+        self.assertEqual(queue.head.next_node.next_node.next_node.data, 'middle3')
+        self.assertEqual(queue.tail.data, 'tail')
