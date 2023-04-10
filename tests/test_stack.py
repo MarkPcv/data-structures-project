@@ -57,3 +57,13 @@ class TestStack(unittest.TestCase):
         data = stack_double.pop()
         self.assertEqual(stack_double.top.data, 'First node')
         self.assertEqual(data, 'Second node')
+
+    def test_stack_str(self):
+        """
+        Tests __str__ dunder methods
+        """
+        stack = Stack()
+        stack.push('First node')
+        stack.push('Second node')
+        expected_result = 'Second node\nFirst node\n'
+        self.assertEqual(str(stack),expected_result)
