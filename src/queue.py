@@ -25,14 +25,18 @@ class Queue:
 
         :param data: данные, которые будут добавлены в очередь
         """
+        # Case with no elements
         if self.head is None:
             self.head = Node(data, None)
-            self.tail = self.head
+        # Case with one element
+        elif self.tail is None:
+            self.tail = Node(data, None)
+            self.head.next_node = self.tail
+        # Case with at least two elements
         else:
             temp = self.tail
             self.tail = Node(data, None)
             temp.next_node = self.tail
-            self.head.next_node = temp
 
 
     def dequeue(self):
@@ -48,7 +52,7 @@ class Queue:
         # Initialize variables
         result = ""
         temp = self.head
-        # From end of stack till the first element
+        # From front of queue till the last element
         while temp is not None:
             if temp.next_node is None:
                 result += temp.data
