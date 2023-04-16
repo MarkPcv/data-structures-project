@@ -53,3 +53,20 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(queue.head.next_node.next_node.data, 'middle2')
         self.assertEqual(queue.head.next_node.next_node.next_node.data, 'middle3')
         self.assertEqual(queue.tail.data, 'tail')
+
+    def test_queue_dequeue(self):
+        """
+        Tests enqueue method of Queue class
+        """
+        queue = Queue()
+        queue.enqueue('head')
+        queue.enqueue('middle1')
+        queue.enqueue('middle2')
+        queue.enqueue('middle3')
+        queue.enqueue('tail')
+        self.assertEqual(queue.dequeue(), 'head')
+        self.assertEqual(queue.dequeue(), 'middle1')
+        self.assertEqual(queue.dequeue(), 'middle2')
+        self.assertEqual(queue.dequeue(), 'middle3')
+        self.assertEqual(queue.dequeue(), 'tail')
+        self.assertIsNone(queue.dequeue())
