@@ -62,3 +62,34 @@ class TestLinkedList(unittest.TestCase):
                                            "{'name': 'Kate'} -> "
                                            "{'name': 'Klaus'} -> "
                                            "{'name': 'Freddy'} -> None"))
+
+    def test_to_list(self):
+        """
+        Test conversion from linked list to list
+        """
+        ll = LinkedList()
+        ll.insert_beginning({'id': 1, 'username': 'mpoc655'})
+        ll.insert_at_end({'id': 2, 'username': 'markpcv'})
+        ll.insert_at_end({'id': 3, 'username': 'nvrgivep'})
+        ll.insert_beginning({'id': 0, 'username': 'blacksmith'})
+        self.assertEqual(ll.to_list(), [
+                        {'id': 0, 'username': 'blacksmith'},
+                        {'id': 1, 'username': 'mpoc655'},
+                        {'id': 2, 'username': 'markpcv'},
+                        {'id': 3, 'username': 'nvrgivep'},
+        ])
+
+    def test_get_data_by_id(self):
+        """
+        Test search by id
+        """
+        ll = LinkedList()
+        ll.insert_beginning({'id': 1, 'username': 'mpoc655'})
+        ll.insert_at_end('herewego')
+        ll.insert_at_end([4, 5, 6])
+        ll.insert_at_end({'id': 2, 'username': 'spider345'})
+
+        self.assertRaises(TypeError, ll.get_data_by_id(2))
+
+        self.assertEqual(ll.get_data_by_id(2),
+                         {'id': 2, 'username': 'spider345'})
