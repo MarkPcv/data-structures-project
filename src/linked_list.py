@@ -58,3 +58,28 @@ class LinkedList:
 
         ll_string += ' None'
         return ll_string
+
+    def to_list(self) -> list:
+        """
+        Converts linked list into a list
+        """
+        list_elements = []
+        temp = self.head
+        while temp is not None:
+            list_elements.append(temp.data)
+            temp = temp.next_node
+        return list_elements
+
+    def get_data_by_id(self, element_id: int) -> dict:
+        """
+        Returns a dictionary by id
+        """
+        temp = self.head
+        while temp is not None:
+            try:
+                if temp.data['id'] == element_id:
+                    return temp.data
+                temp = temp.next_node
+            except TypeError:
+                print(TypeError("Data is not a dictionary or there is no 'id'"))
+                temp = temp.next_node
